@@ -4,7 +4,7 @@ import Lottie from 'lottie-react';
 import signin from "../../assets/22Animation - 1748446696787.json"
 
 const SignIn = () => {
-     const {createUser} = use(AuthContext);
+     const {signInUser} = use(AuthContext);
        
         const handleSignIn = e => {
             e.preventDefault()
@@ -13,14 +13,16 @@ const SignIn = () => {
              const password = form.password.value;
             // console.log(email,password)
     
-            // createsuer 
-            createUser(email,password)
+        //   sign in user 
+            signInUser(email,password)
             .then(result => {
                 console.log(result.user)
             })
             .catch(error =>{
                 console.log(error)
             })
+
+            
         }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -32,7 +34,7 @@ const SignIn = () => {
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
-                        <h1 className="text-5xl font-bold">Register</h1>
+                        <h1 className="text-5xl font-bold">Sign In</h1>
                         {/* fort start here  */}
                         <form onSubmit={handleSignIn} className="fieldset">
                             {/* email field  */}
@@ -43,7 +45,7 @@ const SignIn = () => {
                                 name='password'
                                 className="input" placeholder="Password" />
                             <div><a className="link link-hover">Forgot password?</a></div>
-                            <button className="btn btn-neutral mt-4">Register</button>
+                            <button className="btn btn-neutral mt-4">Sign In</button>
                         </form>
                     </div>
                 </div>
