@@ -1,8 +1,11 @@
 import Lottie from 'lottie-react';
-import React from 'react';
+import React, { use } from 'react';
 import register from '../../assets/Animation - 1748441579987.json'
+import { AuthContext } from '../../Context/AuthContext';
 
 const Register = () => {
+    const {name} = use(AuthContext);
+    console.log(name)
 
     const handleRegister = e => {
         e.preventDefault()
