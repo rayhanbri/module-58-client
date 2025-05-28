@@ -3,6 +3,14 @@ import React from 'react';
 import register from '../../assets/Animation - 1748441579987.json'
 
 const Register = () => {
+
+    const handleRegister = e => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+         const password = form.password.value;
+        console.log(email,password)
+    }
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -14,7 +22,9 @@ const Register = () => {
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
                         <h1 className="text-5xl font-bold">Register</h1>
-                        <form className="fieldset">
+                        {/* fort start here  */}
+                        <form onSubmit={handleRegister} className="fieldset">
+                            {/* email field  */}
                             <label className="label">Email</label>
                             <input type="email" name='email' className="input" placeholder="Email" />
                             <label className="label">Password</label>
