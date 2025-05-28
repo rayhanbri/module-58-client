@@ -11,16 +11,26 @@ const Banner = () => {
                 />
                 <div>
                     {/* motion k install korbo er por import korbo , erpor je khane user korte chai tar aghe motion use korbo ,er por animate diye style korbo */}
-                    <motion.h1
+                    {/* <motion.h1
                     animate = {
-                        {rotate:180,transition : {duration: 4}}
+                        {
+                            rotate:180,
+                            x:200,
+                            // eita dile niche nambhe 
+                            // y:200,
+                            // eita dile upore jabe 
+                            y:-200,
+                            
+                            transition : {duration: 4}}
                     }
-                     className="text-5xl font-bold">Box Office News!</motion.h1>
+                     className="text-5xl font-bold">Box Office News!</motion.h1> */}
 
 
                     <motion.h1
                     initial = {{scale:0}}
-                    animate={{scale:1,transition:{duration:3}}}
+                    animate={{
+                        scale:1,
+                        transition:{duration:3}}}
                      className="text-5xl font-bold">Remote <motion.span
                      animate = {
                         {
