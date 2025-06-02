@@ -9,7 +9,7 @@ const SocialLogin = ({from}) => {
        signInWithGoogle()
         .then(result => {
             console.log(result.user)
-            redirect(from || '/')
+            redirect( from || '/')
         })
         .catch(error => {
             console.log(error)
