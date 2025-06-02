@@ -3,9 +3,16 @@ import { AuthContext } from '../../Context/AuthContext';
 import Lottie from 'lottie-react';
 import signin from "../../assets/22Animation - 1748446696787.json"
 import SocialLogin from '../Shared/SocialLogin';
+import Navbar from '../Shared/Navbar';
+import Footer from '../Shared/Footer';
+import { useLocation, useNavigate } from 'react-router';
 
 const SignIn = () => {
      const {signInUser} = use(AuthContext);
+     const location = useLocation();
+     const from = location.state || '/'
+     const redirect = useNavigate();
+    //  console.log('location in state',location)
        
         const handleSignIn = e => {
             e.preventDefault()
@@ -18,6 +25,7 @@ const SignIn = () => {
             signInUser(email,password)
             .then(result => {
                 console.log(result.user)
+                redirect(from)
             })
             .catch(error =>{
                 console.log(error)
@@ -26,7 +34,9 @@ const SignIn = () => {
             
         }
     return (
-        <div className="hero bg-base-200 min-h-screen">
+       <div>
+        <Navbar></Navbar>
+         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
 
@@ -54,6 +64,8 @@ const SignIn = () => {
                 </div>
             </div>
         </div>
+        <Footer></Footer>
+       </div>
     );
 };
 
