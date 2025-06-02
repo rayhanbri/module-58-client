@@ -3,21 +3,50 @@ import Navbar from '../Shared/Navbar';
 import Footer from '../Shared/Footer';
 import { useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const JobApply = () => {
-    const { id } = useParams();
+    const { id: jobId } = useParams();
     const { user } = useAuth();
 
-    // console.log(id, user)
-
-    const handleApply = e =>{
+    // console.log(jobId, user)
+    const handleApply = e => {
         e.preventDefault();
         const form = e.target;
         const linkdIn = form.linkdIn.value;
         const github = form.github.value;
         const resume = form.resume.value;
-        console.log(linkdIn,github,resume)
+        // console.log(linkdIn, github, resume)
+
+        const application = {
+            jobId,
+            applicant: user.email,
+            linkdIn,
+            github,
+            resume
+        }
+
+        axios.post('http://localhost:3000/applications', application)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1300
+                    });
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
+
+
+
     return (
         <div>
             <Navbar></Navbar>
@@ -30,7 +59,7 @@ const JobApply = () => {
 
                 <label className="label">Resume Link</label>
                 <input type="url" name='resume' className="input" placeholder="Your Resume Link" />
-                <input type="submit"  className='btn btn-warning mt-2' value="Apply" />
+                <input type="submit" className='btn btn-warning mt-2' value="Apply" />
             </form>
             <Footer></Footer>
         </div>
