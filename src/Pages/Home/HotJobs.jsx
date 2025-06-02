@@ -20,10 +20,10 @@ const HotJobs = ({jobsPromise}) => {
     // console.log(jobs)
     return (
         <div>
-            <h2 className="text-4xl text-center">Hot Jobs Of The Day</h2>
+            <h2 className="text-4xl text-center mb-10">Hot Jobs Of The Day</h2>
             <div className="grid grid-cols-1 mx-auto lg:grid-cols-3 md:grid-cols-2 gap-5">
                 {
-                    jobs.map(job =><JobsCard key={job.id}></JobsCard>)
+                    jobs.map(job =><JobsCard key={job._id} job={job}></JobsCard>)
                 }
             </div>
         </div>
