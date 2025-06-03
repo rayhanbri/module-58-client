@@ -21,7 +21,14 @@ const AddJob = () => {
     const requirementDirty = requirementString.split(',')
     const requirementClean = requirementDirty.map(req => req.trim())
     newJob.requirements = requirementClean
-    // console.log(requirementClean,requirementDirty)
+
+    // havefun with responsibility
+    const newResponsibilities = newJob.responsibilities
+    const responsibilityArray = newResponsibilities.split(',').map(res => res.trim());
+    newJob.responsibilities = responsibilityArray;
+
+
+    // console.log(responsibilityArray)
     
       console.log(newJob)
     }
