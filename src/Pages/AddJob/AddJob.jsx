@@ -13,7 +13,10 @@ const AddJob = () => {
         const formData = new FormData(form)
         // console.log(formData.entries())
         const data = Object.fromEntries(formData.entries())
-        console.log(data)
+      const {min,max,currency,...newJob} = data;
+       newJob.salaryRange ={min,max,currency}
+    
+      console.log(newJob)
     }
     return (
         <div>
