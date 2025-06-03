@@ -6,9 +6,16 @@ const Navbar = () => {
     const {user,signOutUser} = use(AuthContext)
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
+        {/* show by checking role if he is applicant  */}
         {
             user && <>
             <li><NavLink to='/myapplication'>My Application</NavLink></li>
+             </>
+        }
+        {/* for company  */}
+        {
+            user && <>
+            <li><NavLink to='/addJob'>Add Job</NavLink></li>
              </>
         }
     </>
