@@ -13,8 +13,15 @@ const AddJob = () => {
         const formData = new FormData(form)
         // console.log(formData.entries())
         const data = Object.fromEntries(formData.entries())
+        // have fun with salary 
       const {min,max,currency,...newJob} = data;
        newJob.salaryRange ={min,max,currency}
+    //    havefun with requirements 
+    const requirementString = newJob.requirements;
+    const requirementDirty = requirementString.split(',')
+    const requirementClean = requirementDirty.map(req => req.trim())
+    newJob.requirements = requirementClean
+    // console.log(requirementClean,requirementDirty)
     
       console.log(newJob)
     }
