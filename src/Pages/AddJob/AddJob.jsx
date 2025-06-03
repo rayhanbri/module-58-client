@@ -1,13 +1,25 @@
 import React from 'react';
 import Navbar from '../Shared/Navbar';
 import Footer from '../Shared/Footer';
+import useAuth from '../../Hooks/useAuth';
 
 const AddJob = () => {
+    const {user} = useAuth();
+
+
+    const handleAddJob = e =>{
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form)
+        // console.log(formData.entries())
+        const data = Object.fromEntries(formData.entries())
+        console.log(data)
+    }
     return (
         <div>
             <Navbar></Navbar>
             <h1 className='text-4xl text-center text-semibold mt-7'>Please add a job</h1>
-            <form>
+            <form onSubmit={handleAddJob}>
                 {/* compoany name title and so on  */}
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
                     <legend className="fieldset-legend">Basic Info</legend>
@@ -31,9 +43,9 @@ const AddJob = () => {
                     <legend className="fieldset-legend">Job Type</legend>
                     <div className="filter">
                         <input className="btn filter-reset" type="radio" name="jobType" aria-label="All" />
-                        <input className="btn" type="radio" name="jobType" aria-label="On-Site" />
-                        <input className="btn" type="radio" name="jobType" aria-label="Remote" />
-                        <input className="btn" type="radio" name="jobType" aria-label="Hybrid" />
+                        <input className="btn" type="radio" value='On-Site' name="jobType" aria-label="On-Site" />
+                        <input className="btn" type="radio" value='Remote' name="jobType" aria-label="Remote" />
+                        <input className="btn" type="radio" value='Hybrid' name="jobType" aria-label="Hybrid" />
                     </div>
                 </fieldset>
                 {/* category */}
@@ -109,7 +121,7 @@ const AddJob = () => {
                     {/* HR email */}
 
                     <label className="label">HR Email</label>
-                    <input type="text" name='hr_email' className="input" placeholder="HR Email" />
+                    <input type="text" defaultValue={user?.email} name='hr_email' className="input" placeholder="HR Email" />
                     </fieldset>
                     <input type="submit" className='btn btn-warning w-[325px]' value="Submit" />
             </form>
