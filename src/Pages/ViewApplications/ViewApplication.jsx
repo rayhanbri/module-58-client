@@ -10,7 +10,7 @@ const ViewApplication = () => {
 
    const handleOnChange = (e,_id) => {
     const value = e.target.value;
-    console.log(value,_id)
+    // console.log(value,_id)
 
     axios.patch(`http://localhost:3000/applications/${_id}`,{status : value})
     .then(res => {
