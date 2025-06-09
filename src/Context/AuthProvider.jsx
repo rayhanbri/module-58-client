@@ -26,11 +26,14 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false)
+            // 2nd approach
+            // 3 install cookienpm install cookie-parser in backend 
             if(currentUser?.email){
                 const userData = {email:currentUser.email}
-                axios.post('http://localhost:3000/jwt',userData)
+                console.log(userData)
+                axios.post('http://localhost:3000/jwt',userData,{withCredentials:true})
                 .then(res => {
-                    console.log('token after jwt',res.data.token)
+                    console.log('token after jwt',res.data)
                 })
                 .catch(error => {
                     console.log(error)
