@@ -1,28 +1,31 @@
-import Navbar from '../Shared/Navbar';
-import Footer from '../Shared/Footer';
-import { useLoaderData, useParams } from 'react-router';
 import axios from 'axios';
+import React from 'react';
+import { useLoaderData, useParams } from 'react-router';
 
 const ViewApplication = () => {
     const { id } = useParams();
     const applications = useLoaderData();
-    // console.log(applications)
+    
+    console.log(applications)
 
-   const handleOnChange = (e,_id) => {
-    const value = e.target.value;
-    // console.log(value,_id)
+    const handleChange=(e,id)=>{
+        e.preventDefault()
+        const value = e.target.value;
+        console.log(value,id)
 
-    axios.patch(`http://localhost:3000/applications/${_id}`,{status : value})
-    .then(res => {
-        console.log(res.data)
-    })
-    .catch(error => {
-        console.log(error)
-    })
-   }
+        axios.patch(`http://localhost:3000/applications/${id}`,{status:value})
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+    }
+
     return (
         <div>
-            <Navbar></Navbar>
+
             view:{id}
             <br />
             Total Application:{applications.length}
@@ -44,7 +47,7 @@ const ViewApplication = () => {
                                 <td>{app.applicant}</td>
                                 <td>{app.github}</td>
                                 <td>
-                                    <select onChange={e => handleOnChange(e,app._id)} defaultValue="Pick a font" className="select select-ghost">
+                                    <select onChange={(e)=>handleChange(e,app._id)} defaultValue="Pick a font" className="select select-ghost">
                                         <option disabled={true}>Select Status</option>
                                         <option>Pending</option>
                                         <option>Interview Call</option>
@@ -57,7 +60,7 @@ const ViewApplication = () => {
                     </tbody>
                 </table>
             </div>
-            <Footer></Footer>
+
         </div>
     );
 };

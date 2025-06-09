@@ -1,27 +1,29 @@
-import React, { use } from 'react';
-import { AuthContext } from '../../Context/AuthContext';
-import Lottie from 'lottie-react';
+import React from 'react';
 import signin from "../../assets/22Animation - 1748446696787.json"
+import useAuth from '../../Hooks/useAuth';
+import Lottie from 'lottie-react';
 import SocialLogin from '../Shared/SocialLogin';
-import Navbar from '../Shared/Navbar';
-import Footer from '../Shared/Footer';
 import { useLocation, useNavigate } from 'react-router';
 
+
 const SignIn = () => {
-     const {signInUser} = use(AuthContext);
-     const location = useLocation();
-     const from = location.state || '/'
-     const redirect = useNavigate();
-    //  console.log('location in state',location)
-       
-        const handleSignIn = e => {
+
+    const {signInUser} = useAuth()
+    const location = useLocation()
+    const from = location.state || '/'
+    const redirect = useNavigate()
+
+    // console.log(location)
+    // console.log(from)
+
+     const handleSignIn = e => {
             e.preventDefault()
             const form = e.target;
             const email = form.email.value;
              const password = form.password.value;
             // console.log(email,password)
     
-        //   sign in user 
+            // createsuer 
             signInUser(email,password)
             .then(result => {
                 console.log(result.user)
@@ -30,13 +32,9 @@ const SignIn = () => {
             .catch(error =>{
                 console.log(error)
             })
-
-            
         }
     return (
-       <div>
-        <Navbar></Navbar>
-         <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-base-200 min-h-screen">Add commentMore actions
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
 
@@ -55,17 +53,13 @@ const SignIn = () => {
                             <input type="password"
                                 name='password'
                                 className="input" placeholder="Password" />
-                            <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn btn-neutral mt-4">Sign In</button>
-                            <SocialLogin from={from}></SocialLogin>
                         </form>
-
+                        <SocialLogin from={from}></SocialLogin>
                     </div>
                 </div>
             </div>
         </div>
-        <Footer></Footer>
-       </div>
     );
 };
 

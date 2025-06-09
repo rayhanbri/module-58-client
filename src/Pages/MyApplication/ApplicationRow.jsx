@@ -1,9 +1,7 @@
 import React from 'react';
 
-const ApplicationRow = ({ application, index }) => {
-    // ekhon eikhane shob thik ache kintu  ami kon jobe apply korechi ota jani na ota kivave janbo
-    console.log(application) 
-    const {company_logo,title} = application;
+const ApplicationRow = ({application,index}) => {
+    const {company_logo,title,company} = application;
     return (
         <tr>
             <th>
@@ -20,7 +18,7 @@ const ApplicationRow = ({ application, index }) => {
                     </div>
                     <div>
                         <div className="font-bold">{title}</div>
-                        <div className="text-sm opacity-50">United States</div>
+                        <div className="text-sm opacity-50">{company}</div>
                     </div>
                 </div>
             </td>

@@ -2,10 +2,10 @@ import React, { use } from 'react';
 import ApplicationRow from './ApplicationRow';
 
 const ApplicationList = ({applicationPromise}) => {
-    const applications = use(applicationPromise);
-   
+    const applications = use(applicationPromise)
+    console.log(applications)
     return (
-        <div className="overflow-x-auto">
+          <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
     <thead>

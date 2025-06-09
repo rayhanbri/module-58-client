@@ -1,16 +1,14 @@
 import React from 'react';
-import Navbar from '../Shared/Navbar';
-import Footer from '../Shared/Footer';
-import { useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const JobApply = () => {
-    const { id: jobId } = useParams();
     const { user } = useAuth();
+    const { id: jobId } = useParams();
 
-    // console.log(jobId, user)
+    console.log(jobId)
     const handleApply = e => {
         e.preventDefault();
         const form = e.target;
@@ -39,17 +37,14 @@ const JobApply = () => {
                         timer: 1300
                     });
                 }
+
             })
             .catch(error => {
                 console.log(error)
             })
     }
-
-
-
     return (
         <div>
-            <Navbar></Navbar>
             <form onSubmit={handleApply} className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
                 <label className="label">LinkedIN Profile</label>
                 <input type="url" name='linkdIn' className="input" placeholder="Your LinkdIn Link" />
@@ -61,7 +56,6 @@ const JobApply = () => {
                 <input type="url" name='resume' className="input" placeholder="Your Resume Link" />
                 <input type="submit" className='btn btn-warning mt-2' value="Apply" />
             </form>
-            <Footer></Footer>
         </div>
     );
 };

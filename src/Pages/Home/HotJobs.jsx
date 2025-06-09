@@ -1,29 +1,22 @@
-// import React, { use } from 'react';
+import React, { useEffect, useState } from 'react';
+import JobsCard from '../Shared/JobsCard';
 
-import {  useEffect, useState } from "react";
-import JobsCard from "../Shared/JobsCard";
+const HotJobs = ({ jobsPromise }) => {
 
-const HotJobs = ({jobsPromise}) => {
 
-    const [jobs,setJobs] = useState([]);
-
+    const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
         jobsPromise
-        .then(setJobs)
-    },[jobsPromise])
-
-    // console.log('userEffet', jobs)
-
-    // const jobs = use(jobsPromise)
-  
+            .then(setJobs)
+    }, [jobsPromise])
     // console.log(jobs)
     return (
         <div>
-            <h2 className="text-4xl text-center mb-10">Hot Jobs Of The Day</h2>
+            <h2 className="text-4xl text-center">Hot Jobs Of The Day</h2>
             <div className="grid grid-cols-1 mx-auto lg:grid-cols-3 md:grid-cols-2 gap-5">
                 {
-                    jobs.map(job =><JobsCard key={job._id} job={job}></JobsCard>)
+                    jobs.map(job => <JobsCard key={job._id} job={job}></JobsCard>)
                 }
             </div>
         </div>

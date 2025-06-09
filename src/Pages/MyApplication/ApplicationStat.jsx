@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ApplicatonStat = () => {
+const ApplicationStat = () => {
     return (
         <div className="stats shadow">
             <div className="stat">
@@ -61,4 +61,4 @@ const ApplicatonStat = () => {
     );
 };
 
-export default ApplicatonStat;
+export default ApplicationStat;

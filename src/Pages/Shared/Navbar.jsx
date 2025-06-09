@@ -1,35 +1,38 @@
-import React, { use } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router';
-import { AuthContext } from '../../Context/AuthContext';
+import useAuth from '../../Hooks/useAuth';
 
 const Navbar = () => {
-    const {user,signOutUser} = use(AuthContext)
-    const links = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        {/* show by checking role if he is applicant  */}
-        {
-            user && <>
-            <li><NavLink to='/myapplication'>My Application</NavLink></li>
-             </>
-        }
-        {/* for company  */}
-        {
-            user && <>
-            <li><NavLink to='/addJob'>Add Job</NavLink></li>
-            <li><NavLink to='/postedjob'>My Posted JOb</NavLink></li>
-             </>
-        }
-    </>
+    const { user,signOutUser } = useAuth();
 
     const handleSignOut = () => {
         signOutUser()
-        .then(result => {
-            console.log('user sign out')
+        .then(res => {
+            console.log('user sign out' )
         })
-        .catch(error => {
+        .catch(error =>{
             console.log(error)
-        }) 
+        })
+
     }
+
+    const links = <>
+        <li><NavLink to='/'>Home</NavLink></li>
+        {
+            user && 
+            <li><NavLink to='/myapplication'>My Application</NavLink></li>
+            
+        }
+        {/* for company 
+         */}
+         {
+            user && 
+           <>
+            <li><NavLink to='/addjob'>Add Job</NavLink></li>
+            <li><NavLink to='/postedJob'>My Posted Job</NavLink></li>
+           </>
+         }
+    </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
@@ -40,24 +43,26 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            {links}
+                        {links}
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">daisyUI</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                {links}
+                    {links}
                 </ul>
             </div>
             <div className="navbar-end">
-               {
-                user ? <button onClick={handleSignOut} className='btn btn-primary' >Sign Out</button> :
-                <>
-                 <NavLink to='/register' className="btn">Register</NavLink>
-                <NavLink to='/signin' className="btn">Signin</NavLink>
-                </>
-               }
+                {
+                    user ?
+                        <button onClick={handleSignOut} className='btn btn-warning'>Sign Out</button>
+                        :
+                        <>
+                            <NavLink to='/signin' className="btn">SignIn</NavLink>
+                            <NavLink to='/register' className="btn">Register</NavLink>
+                        </>
+                }
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 import React, { use } from 'react';
 import { Link } from 'react-router';
 
-const JobList = ({ jobPostedPromise }) => {
-    const jobs = use(jobPostedPromise);
-    // console.log(jobs)
+const List = ({ jobPromise }) => {
+    const jobs = use(jobPromise)
+    console.log(jobs)
     return (
         <div>
             YOU Posted Job : {jobs.length}
@@ -21,8 +21,8 @@ const JobList = ({ jobPostedPromise }) => {
                     </thead>
                     <tbody>
                         {
-                            jobs.map((job,index) => <tr key={job._id}>
-                                <th>{index+1}</th>
+                            jobs.map((job, index) => <tr key={job._id}>
+                                <th>{index + 1}</th>
                                 <td>{job.title}</td>
                                 <td>{job.date}</td>
                                 <td>{job.applicationCount}</td>
@@ -32,8 +32,8 @@ const JobList = ({ jobPostedPromise }) => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 
-export default JobList;
+export default List;

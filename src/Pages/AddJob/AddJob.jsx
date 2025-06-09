@@ -1,9 +1,6 @@
 import React from 'react';
-import Navbar from '../Shared/Navbar';
-import Footer from '../Shared/Footer';
 import useAuth from '../../Hooks/useAuth';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const AddJob = () => {
     const { user } = useAuth();
@@ -15,46 +12,40 @@ const AddJob = () => {
         const formData = new FormData(form)
         // console.log(formData.entries())
         const data = Object.fromEntries(formData.entries())
-        // have fun with salary 
-        const { min, max, currency, ...newJob } = data;
-        newJob.salaryRange = { min, max, currency }
-        //    havefun with requirements 
-        const requirementString = newJob.requirements;
-        const requirementDirty = requirementString.split(',')
-        const requirementClean = requirementDirty.map(req => req.trim())
-        newJob.requirements = requirementClean
+       
 
-        // havefun with responsibility
-        const newResponsibilities = newJob.responsibilities
-        const responsibilityArray = newResponsibilities.split(',').map(res => res.trim());
-        newJob.responsibilities = responsibilityArray;
+        const {min,max,currency,...newJob} =data;
 
-        newJob.status = 'active';
-        // console.log(responsibilityArray)
-        console.log(newJob)
+        newJob.salaryRange = {min,max,currency}
 
-        //   post data in database 
-        axios.post('http://localhost:3000/jobs', newJob)
-            .then(res => {
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Your job has been saved",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-                console.log(res.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        // responsibility 
+        const responsibilityString = newJob.responsibilities;
+        const  response = responsibilityString.split(',')
+        const newresponse = response.map(res => res.trim())
+        newJob.responsibilities = newresponse;
+
+        //requirements
+
+       const requirementStr = newJob.requirements;
+       const requirement = requirementStr.split(',').map(req => req.trim())
+       newJob.requirements = requirement
+
+
+        // console.log(requirement)
+        // console.log(newJob)
+
+        axios.post('http://localhost:3000/jobs',newJob)
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
 
     }
     return (
+
         <div>
-            <Navbar></Navbar>
             <h1 className='text-4xl text-center text-semibold mt-7'>Please add a job</h1>
             <form onSubmit={handleAddJob}>
                 {/* compoany name title and so on  */}
@@ -161,8 +152,8 @@ const AddJob = () => {
                     <input type="text" defaultValue={user?.email} name='hr_email' className="input" placeholder="HR Email" />
                 </fieldset>
                 <input type="submit" className='btn btn-warning w-[325px]' value="Submit" />
+
             </form>
-            <Footer></Footer>
         </div>
     );
 };
