@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../Firebase/firebaseInit';
-import axios from 'axios';
+
 
 
 
@@ -26,20 +26,6 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false)
-            // 2nd approach
-            // 3 install cookienpm install cookie-parser in backend 
-            if(currentUser?.email){
-                const userData = {email:currentUser.email}
-                console.log(userData)
-                axios.post('http://localhost:3000/jwt',userData,{withCredentials:true})
-                .then(res => {
-                    console.log('token after jwt',res.data)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-            }
-            // console.log('user in the auth state change', currentUser)
         })
         return () => {
             unSubscribe();

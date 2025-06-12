@@ -6,8 +6,9 @@ import useAuth from '../../Hooks/useAuth';
 
 const MyApplication = () => {
     const { user } = useAuth();
-
-    console.log('token', user.accessToken)
+    
+    // 1.sende token to the  prmoise . 2. go promise file 
+    // console.log('token', user.accessToken)
     return (
         <div>
             <ApplicationStat></ApplicationStat>
