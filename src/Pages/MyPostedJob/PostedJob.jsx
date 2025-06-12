@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { jobPromise } from '../../Api/jobPromise';
+
 import useAuth from '../../Hooks/useAuth';
 import List from './List';
 import useJobApi from '../../Api/useJobApi';
