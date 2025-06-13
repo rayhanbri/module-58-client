@@ -25,7 +25,7 @@ const JobApply = () => {
             resume
         }
 
-        axios.post('http://localhost:3000/applications', application)
+        axios.post('https://module-58-server-omega.vercel.app/applications', application)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {

@@ -13,7 +13,7 @@ const ViewApplication = () => {
         const value = e.target.value;
         console.log(value,id)
 
-        axios.patch(`http://localhost:3000/applications/${id}`,{status:value})
+        axios.patch(`https://module-58-server-omega.vercel.app/applications/${id}`,{status:value})
         .then(res => {
             console.log(res.data)
         })

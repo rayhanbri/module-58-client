@@ -1,5 +1,5 @@
 export const applicationPromise =( email,accessToken) => {
-   return fetch(`http://localhost:3000/applications?email=${email}`,{
+   return fetch(`https://module-58-server-omega.vercel.app/applications?email=${email}`,{
       headers:{
          authorization : `Bearer ${accessToken}`
       }

@@ -34,7 +34,7 @@ const AddJob = () => {
         // console.log(requirement)
         // console.log(newJob)
 
-        axios.post('http://localhost:3000/jobs',newJob)
+        axios.post('https://module-58-server-omega.vercel.app/jobs',newJob)
         .then(res => {
             console.log(res.data)
         })

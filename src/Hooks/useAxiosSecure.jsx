@@ -3,7 +3,7 @@ import React from 'react';
 import useAuth from './useAuth';
 
 const axoisInstance = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://module-58-server-omega.vercel.app'
     // ekhane slash diye felle ar onno jaighai dewa lagbe na 
     // niche kaj kore asho 
 })
